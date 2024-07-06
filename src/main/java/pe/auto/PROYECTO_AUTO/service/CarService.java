@@ -1,6 +1,7 @@
 package pe.auto.PROYECTO_AUTO.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.auto.PROYECTO_AUTO.response.DeleteCarResponse;
 import pe.auto.PROYECTO_AUTO.response.UpdateCarResponse;
@@ -20,7 +21,7 @@ public class CarService {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/all")
-    public FindCarResponse findCars(@RequestParam(value = "id", defaultValue = "0") Integer id){
+    public ResponseEntity<Iterable<Car>> findCars(@RequestParam(value = "id", defaultValue = "0") Integer id){
 
         Iterable<Car> cars = null;
         if(id > 0){
@@ -29,7 +30,7 @@ public class CarService {
             cars = carRepository.findAll();
         }
 
-        return new FindCarResponse("01", null, cars);
+        return ResponseEntity.ok().body(cars);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
