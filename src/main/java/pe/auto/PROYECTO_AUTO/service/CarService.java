@@ -18,6 +18,7 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/all")
     public FindCarResponse findCars(@RequestParam(value = "id", defaultValue = "0") Integer id){
 
@@ -31,6 +32,7 @@ public class CarService {
         return new FindCarResponse("01", null, cars);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/add")
     public AddCarResponse addCar(@RequestBody Car car){
 
@@ -42,6 +44,7 @@ public class CarService {
         return new AddCarResponse("01", null);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/update")
     public UpdateCarResponse updateCar(@RequestBody Car car){
 
@@ -53,6 +56,7 @@ public class CarService {
         return new UpdateCarResponse("01",null);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/delete")
     public DeleteCarResponse deleteCar(@RequestBody Car car){
 
